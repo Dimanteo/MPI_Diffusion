@@ -1,22 +1,23 @@
 #include <mpi/mpi.h>
 #include "net.h"
 #include <fstream>
+#include <cmath>
 
 using namespace solnet;
 
 // Equation
-// du/dt + a*du/dx = f(t,x)
+// du/dt + c*du/dx = f(t,x)
 numb_t f(numb_t t, numb_t x) {
-    return 0;
+    return cos(x) + cos(t);
 }
 // Initial conditions
 // u(0, x)
 numb_t space_init(numb_t x) {
-    return 1;
+    return sin(2 * x);
 }
 // u(t, 0)
 numb_t time_init(numb_t t) {
-    return 1;
+    return sin(t);
 }
 
 int main(int argc, char **argv) {

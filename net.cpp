@@ -38,7 +38,14 @@ int NetSolver::parse_config(int argc, char **argv) {
         std::cerr << "Can't open config file\n";
         return ERR;
     }
-    fscanf(fptr, "x:%lf\nt:%lf\nX:%lf\nT:%lf\na:%lf",
+    fscanf(fptr,
+    "{\n"
+    "\"x\":%lf,\n"
+    "\"t\":%lf,\n"
+    "\"X\":%lf,\n"
+    "\"T\":%lf,\n"
+    "\"c\":%lf\n"
+    "}",
         &x_step, &t_step, &x_max, &t_max, &param);
     fclose(fptr);
     return OK;

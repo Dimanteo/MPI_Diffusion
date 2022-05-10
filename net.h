@@ -47,8 +47,8 @@ class NetSolver {
     // Only for control thread. Worker loads decription
     std::vector<std::pair<size_t, size_t>> tasks;
     // Equation
-    // du/dt + a*du/dx = f(t,x)
-    numb_t param; // param "a" in equation
+    // du/dt + c*du/dx = f(t,x)
+    numb_t param; // param "c" in equation
 
     using multifunc_t = std::function<numb_t(numb_t, numb_t)>;
     using func_t = std::function<numb_t(numb_t)>;
