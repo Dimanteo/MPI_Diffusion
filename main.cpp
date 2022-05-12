@@ -38,7 +38,7 @@ int main(int argc, char **argv) {
 
     std::ofstream of;
     of.open("res.csv");
-    // net.dump(of);
+    net.dump(of);
     of.close();
 
     MPI_Finalize();
