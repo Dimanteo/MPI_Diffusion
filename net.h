@@ -70,7 +70,7 @@ class NetSolver {
     void init_net();
     void fill_layer(size_t layer);
     void synchronize(size_t layer);
-    numb_t useCrossScheme(size_t t, size_t x, const MemMatrix &U);
+    numb_t use_scheme(size_t t, size_t x, const MemMatrix &U);
     void gather_results();
 
   public:

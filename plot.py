@@ -45,6 +45,7 @@ def plot_data(data, config):
         x_axis.append(config.x_step * i)
     for i in range(t_size):
         t_axis.append(config.t_step * i)
+    print(config.t_step * (t_size - 1))
     xgrid, ygrid = np.meshgrid(x_axis, t_axis)
     fig = plt.figure(figsize=[12, 8])
     axes = fig.add_subplot(projection='3d')

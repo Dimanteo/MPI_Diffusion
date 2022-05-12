@@ -83,8 +83,8 @@ void NetSolver::set_range(size_t l, size_t r) {
 }
 
 void NetSolver::split_task() {
-    net_width = static_cast<size_t>(std::ceil(t_max / t_step)) + 1;
-    net_height = static_cast<size_t>(std::ceil(x_max / x_step)) + 1;
+    net_height = static_cast<size_t>(std::ceil(t_max / t_step)) + 1;
+    net_width = static_cast<size_t>(std::ceil(x_max / x_step)) + 1;
     int rank = 0;
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
     if (rank == 0) {
@@ -179,16 +179,16 @@ void NetSolver::fill_layer(size_t k) {
     // m - space
     MemMatrix &U = *net_matrix.get();
     for (size_t m = 1; m <= task_width; m++) {
-        U(k, m) = useCrossScheme(k, m, U);
+        U(k, m) = use_scheme(k, m, U);
     }
 }
 
-numb_t NetSolver::useCrossScheme(size_t t, size_t x, const MemMatrix &U) {
+numb_t NetSolver::use_scheme(size_t t, size_t x, const MemMatrix &U) {
     size_t k = t - 1; // previous layer
     size_t m = x;
     numb_t time = t_step * static_cast<numb_t>(k);
     numb_t coord = x_step * static_cast<numb_t>(m);
-    return U.at(k-1, m) + 2*t_step*f(time, coord) + (U.at(k, m-1) - U.at(k, m+1)) * t_step * param / x_step;
+    return 0.5*(U.at(k, m+1) + U.at(k, m-1)) + t_step*f(time, coord) + (U.at(k, m-1) - U.at(k, m+1)) * t_step * param / 2.0 / x_step;
 }
 
 void NetSolver::synchronize(size_t layer) {

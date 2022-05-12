@@ -8,16 +8,16 @@ using namespace solnet;
 // Equation
 // du/dt + c*du/dx = f(t,x)
 numb_t f(numb_t t, numb_t x) {
-    return cos(x) + cos(t);
+    return x * cos(t) + sin(t);
 }
 // Initial conditions
 // u(0, x)
 numb_t space_init(numb_t x) {
-    return sin(2 * x);
+    return 0;
 }
 // u(t, 0)
 numb_t time_init(numb_t t) {
-    return sin(t);
+    return 0;
 }
 
 int main(int argc, char **argv) {
@@ -38,7 +38,7 @@ int main(int argc, char **argv) {
 
     std::ofstream of;
     of.open("res.csv");
-    net.dump(of);
+    // net.dump(of);
     of.close();
 
     MPI_Finalize();
